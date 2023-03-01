@@ -1,16 +1,14 @@
+import { useOutletContext, Link } from "react-router-dom";
 
-function Characters(props) {
-    const { characters, setCharacters } = props;
-    const resetCharacters = () => {
-        setCharacters(null);
-    };
+function Characters() {
+    const { characters } = useOutletContext();
 
     return (
         <div className="characters">
             <h1>Personajes</h1>
-            <span className="back-home" onClick={resetCharacters}>Volver a la home</span>
+            <Link to={`/`}><span className="back-home">Volver a la home</span></Link>
             <div className="container-characters">
-                {characters.map((ch, index) => (
+                {characters?.map((ch, index) => (
                     <div className="character-container" key={index}>
                         <div>
                             <img src={ch.image} alt={ch.name}></img>
@@ -40,7 +38,7 @@ function Characters(props) {
                     </div>
                 ))}
             </div>
-            <span className="back-home" onClick={resetCharacters}>Volver a la home</span>
+            <Link to={`/`}><span className="back-home">Volver a la home</span></Link>
         </div>
     );
 }
